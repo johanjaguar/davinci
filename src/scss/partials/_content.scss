@@ -1,0 +1,13 @@
+.middle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 72vh;
+  padding: 2em 0;
+  
+  #tags {
+    input[type="text"] {
+      margin: 0 4px 4px 0;
+    }
+  }
+}
