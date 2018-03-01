@@ -1,6 +1,8 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="src/css/style.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <script type='text/javascript'>
     function addFields() {
       // Number of inputs to create
@@ -28,20 +30,46 @@
 </head>
 
 <body>
-
-  <form>
-    <input type="text" id="primer-nombre" name="primer-nombre" placeholder="Primer Nombre" />
-    <input type="text" id="segundo-nombre" name="segundo-ombre" placeholder="Segundo Nombre" />
-    <input type="text" id="primer-apellido" name="primer-apellido" placeholder="Primer Apellido" />
-    <input type="text" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo Apellido" />
-
-    <a id="add-tag" href="#">Agregar Etiqueta</a>
-    <div id="tags">
-
+  <header class="header">
+    <div class="container header__container" id="header__container">
+      <img src="assets/images/logo.png" alt="Da Vinci Logo" id="logo" class="header__logo" />
+      <div class="header__by">
+        <h3>Prueba presentada por:</h3>
+        <p>Johan Vargas Sánchez</p>
+        <a href="https://github.com/johanjaguar" class="header__github github"><i class="fab fa-github"></i>johanjaguar</a>
+      </div>
     </div>
+  </header>
+  <section class="middle">
+    <div class="container middle__container" id="middle__container">
+      <form>
+        <div class="middle__row row">
+          <input type="text" id="primer-nombre" name="primer-nombre" placeholder="Primer Nombre" />
+          <input type="text" id="segundo-nombre" name="segundo-ombre" placeholder="Segundo Nombre" />
+          <input type="text" id="primer-apellido" name="primer-apellido" placeholder="Primer Apellido" />
+          <input type="text" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo Apellido" />
+        </div>
+        <div class="middle__row row">
+          <a id="add-tag" href="#"><i class="fas fa-tags"></i>Agregar Etiqueta</a>
+        </div>
 
-    <a href="#" id="send-values">Buscar</a>
-  </form>
+        <div id="tags" class="middle__row row">
+
+        </div>
+
+        <div class="middle__row row">
+          <a href="#" id="send-values"><i class="fas fa-search"></i>Buscar</a>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__container container">
+      <p>Bogotá, Marzo 01 de 2018 </p>
+    </div>
+  </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -71,13 +99,13 @@
         var segundoApellido = document.getElementById('segundo-apellido').value;
 
         var fullName = `${primerNombre} ${segundoNombre} ${primerApellido} ${segundoApellido}`;
-        
+
         var query = `search=${fullName}`;
-        var tagsArray = document.getElementsByClassName('tag');        
-        Object.keys(tagsArray).forEach(function (key) {
-          query = query + "+"+ tagsArray[key].value;
+        var tagsArray = document.getElementsByClassName('tag');
+        Object.keys(tagsArray).forEach(function(key) {
+          query = query + "+" + tagsArray[key].value;
         });
-        
+
         location.href = `results.html?${query}`;
 
       });
@@ -86,10 +114,8 @@
 
   </script>
   <style>
-    .input[type="text"] {
-      border-radius: 7px;
-      height: 40px;
-    }
+
+
   </style>
 </body>
 

@@ -2,11 +2,21 @@
 <html>
 
 <head>
-
+  <link rel="stylesheet" href="src/css/style.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 
 <body>
-
+  <header class="header">
+    <div class="container header__container" id="header__container">
+      <img src="assets/images/logo.png" alt="Da Vinci Logo" id="logo" class="header__logo" />
+      <div class="header__by">
+        <h3>Prueba presentada por:</h3>
+        <p>Johan Vargas Sánchez</p>
+        <a href="https://github.com/johanjaguar" class="header__github github"><i class="fab fa-github"></i>johanjaguar</a>
+      </div>
+    </div>
+  </header>
   <div id="results">
     <script>
       (function() {
@@ -34,7 +44,7 @@
           celdaTable2.innerHTML = link;
         });
         fnExcelReport();
-        
+
       }
 
 
@@ -80,7 +90,8 @@
 
     </script>
     <gcse:searchresults-only></gcse:searchresults-only>
-    
+
+
     <div class="excel-box">
       <table id="excel-table">
         <tr>
@@ -90,6 +101,13 @@
       </table>
     </div>
   </div>
+
+  <footer class="footer">
+    <div class="footer__container container">
+      <p>Bogotá, Marzo 01 de 2018 </p>
+    </div>
+  </footer>
+
 </body>
 
 </html>

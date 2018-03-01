@@ -1,0 +1,24 @@
+.header{
+  background: $header-bg;
+  display: flex;  
+  padding: 1em 0;
+  
+  &__container {
+    align-content: center; 
+    justify-content: space-between;
+  }
+
+  &__by {
+    align-self: flex-end;
+    color: $header-color; 
+    width: 300px; 
+    
+    h3, p, a {
+      margin: 5px 0;
+    }
+  }
+  
+  &__github {
+    color: $header-color;
+  }
+} 
