@@ -33,6 +33,7 @@
 
       function countResults() {
         var rArr = document.getElementsByClassName('gsc-result');
+        var countResults = 0;
         Object.keys(rArr).forEach(function(key) {
           var title = rArr[key].querySelector('a.gs-title').innerHTML;
           var link = rArr[key].querySelector('a.gs-title').getAttribute('href');
@@ -42,11 +43,13 @@
           celdaTable1.innerHTML = title;
           var celdaTable2 = filaTable.insertCell();
           celdaTable2.innerHTML = link;
+          countResults++;
         });
-        fnExcelReport();
-
+        
+        if( countResults > 3 ) {
+          fnExcelReport();  
+        }
       }
-
 
       function fnExcelReport() {
         var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
