@@ -1,47 +1,96 @@
 <html>
 
-<body>
-  <div id="test"></div>
-
-  <script>
-    var myCallback = function() {
-      if (document.readyState == 'complete') {
-        // Document is ready when CSE element is initialized.
-        // Render an element with both search box and search results in div with id 'test'.
-        google.search.cse.element.render({
-          div: "test",
-          tag: 'search'
-        });
-      } else {
-        // Document is not ready yet, when CSE element is initialized.
-        google.setOnLoadCallback(function() {
-          // Render an element with both search box and search results in div with id 'test'.
-          google.search.cse.element.render({
-            div: "test",
-            tag: 'search'
-          });
-        }, true);
+<head>
+  <script type='text/javascript'>
+    function addFields() {
+      // Number of inputs to create
+      var number = document.getElementById("member").value;
+      // Container <div> where dynamic content will be placed
+      var container = document.getElementById("container");
+      // Clear previous contents of the container
+      while (container.hasChildNodes()) {
+        container.removeChild(container.lastChild);
       }
-    };
-
-    // Insert it before the CSE code snippet so that cse.js can take the script
-    // parameters, like parsetags, callbacks.
-    window.__gcse = {
-      parsetags: 'explicit',
-      callback: myCallback
-    };
-
-    (function() {
-      var cx = '014766992644607176084:uurx_qqg5nu'; // Insert your own Custom Search engine ID here
-      var gcse = document.createElement('script');
-      gcse.type = 'text/javascript';
-      gcse.async = true;
-      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(gcse, s);
-    })();
+      for (i = 0; i < number; i++) {
+        // Append a node with a random text
+        container.appendChild(document.createTextNode("Member " + (i + 1)));
+        // Create an <input> element, set its type and name attributes
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "member" + i;
+        container.appendChild(input);
+        // Append a line break 
+        container.appendChild(document.createElement("br"));
+      }
+    }
 
   </script>
+</head>
+
+<body>
+
+  <form>
+    <input type="text" id="primer-nombre" name="primer-nombre" placeholder="Primer Nombre" />
+    <input type="text" id="segundo-nombre" name="segundo-ombre" placeholder="Segundo Nombre" />
+    <input type="text" id="primer-apellido" name="primer-apellido" placeholder="Primer Apellido" />
+    <input type="text" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo Apellido" />
+
+    <a id="add-tag" href="#">Agregar Etiqueta</a>
+    <div id="tags">
+
+    </div>
+
+    <a href="#" id="send-values">Buscar</a>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      var countTags = 0;
+      var addTag = document.getElementById('add-tag');
+      var tagsBox = document.getElementById('tags');
+      addTag.addEventListener('click', () => {
+        this.preventDefault;
+        var tagInput = document.createElement("input");
+        tagInput.setAttribute("type", "text");
+        tagInput.id = "tag-" + countTags;
+        tagInput.name = "tag-" + countTags;
+        tagInput.setAttribute('placeholder', "Inserte la palabra clave");
+        tagInput.className = "tag";
+        tagsBox.appendChild(tagInput);
+        countTags++;
+      });
+
+      var sendLink = document.getElementById('send-values');
+      sendLink.addEventListener('click', () => {
+        this.preventDefault;
+
+        var primerNombre = document.getElementById('primer-nombre').value;
+        var segundoNombre = document.getElementById('segundo-nombre').value;
+        var primerApellido = document.getElementById('primer-apellido').value;
+        var segundoApellido = document.getElementById('segundo-apellido').value;
+
+        var fullName = `${primerNombre} ${segundoNombre} ${primerApellido} ${segundoApellido}`;
+        
+        var query = `search=${fullName}`;
+        var tagsArray = document.getElementsByClassName('tag');        
+        Object.keys(tagsArray).forEach(function (key) {
+          query = query + "+"+ tagsArray[key].value;
+        });
+        
+        location.href = `results.html?${query}`;
+
+      });
+
+    });
+
+  </script>
+  <style>
+    .input[type="text"] {
+      border-radius: 7px;
+      height: 40px;
+    }
+  </style>
 </body>
 
 </html>
